@@ -11,41 +11,22 @@ export class MarsRover {
 
   execute(commands: string): string {
     if (this.direction === 'N') {
-      if (commands === 'M') {
-        return this.getYPosition(commands);
-      }
-      if (commands === 'MM') {
-        return this.getYPosition(commands);
-      }
-      if (commands === 'MMM') {
-        return this.getYPosition(commands);
-      }
+      this.getPositionY(commands);
     }
 
     if (this.direction === 'E') {
-      if (commands === 'M') {
-        const x = this.setXPosition(commands);
-        return `${x}:${this.yCoordinate}:${this.direction}`;
-      }
-      if (commands === 'MM') {
-        const x = this.setXPosition(commands);
-        return `${x}:${this.yCoordinate}:${this.direction}`;
-      }
-      if (commands === 'MMM') {
-        const x = this.setXPosition(commands);
-        return `${x}:${this.yCoordinate}:${this.direction}`;
-      }
+      this.getPositionX(commands);
     }
 
     return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
   }
-
-  private setXPosition(commands: string): number {
-    return (this.xCoordinate += commands.length);
+  private getPositionY(commands: string): string {
+    this.yCoordinate += commands.length;
+    return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
   }
 
-  private getYPosition(commands: string) {
-    this.yCoordinate += commands.length;
+  private getPositionX(commands: string): string {
+    this.xCoordinate += commands.length;
     return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
   }
 }
