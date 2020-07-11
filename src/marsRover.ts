@@ -24,20 +24,24 @@ export class MarsRover {
 
     if (this.direction === 'E') {
       if (commands === 'M') {
-        this.xCoordinate += commands.length;
-        return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+        const x = this.setXPosition(commands);
+        return `${x}:${this.yCoordinate}:${this.direction}`;
       }
       if (commands === 'MM') {
-        this.xCoordinate += commands.length;
-        return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+        const x = this.setXPosition(commands);
+        return `${x}:${this.yCoordinate}:${this.direction}`;
       }
       if (commands === 'MMM') {
-        this.xCoordinate += commands.length;
-        return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+        const x = this.setXPosition(commands);
+        return `${x}:${this.yCoordinate}:${this.direction}`;
       }
     }
 
     return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+  }
+
+  private setXPosition(commands: string): number {
+    return (this.xCoordinate += commands.length);
   }
 
   private getYPosition(commands: string) {
