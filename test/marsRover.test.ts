@@ -30,21 +30,17 @@ describe('Mars Rover', () => {
     }
   );
 
-  it('should be facing East to start', () => {
-    const marsRover = new MarsRover(0, 0, 'E');
-    const position = marsRover.execute('');
-    expect(position).toBe('0:0:E');
-  });
+  it.each`
+    xCoordinate | yCoordinate | direction | command | expected
+    ${0}        | ${0}        | ${'E'}    | ${'M'}  | ${'1:0:E'}
+    ${0}        | ${0}        | ${'E'}    | ${'MM'} | ${'2:0:E'}
+  `(
+    'should return $expected when facing $direction and command is $command',
+    ({ xCoordinate, yCoordinate, direction, command, expected }) => {
+      const marsRover = new MarsRover(xCoordinate, yCoordinate, direction);
 
-  it('should move forward one grid when facing East', () => {
-    const marsRover = new MarsRover(0, 0, 'E');
-    const position = marsRover.execute('M');
-    expect(position).toBe('1:0:E');
-  });
-
-  it('should move forward two grids when facing East', () => {
-    const marsRover = new MarsRover(1, 0, 'E');
-    const position = marsRover.execute('MM');
-    expect(position).toBe('3:0:E');
-  });
+      const position = marsRover.execute(command);
+      expect(position).toBe(expected);
+    }
+  );
 });
