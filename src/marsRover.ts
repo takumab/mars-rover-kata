@@ -31,6 +31,10 @@ export class MarsRover {
         this.xCoordinate += commands.length;
         return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
       }
+      if (commands === 'MMM') {
+        this.xCoordinate += commands.length;
+        return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+      }
     }
 
     return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;

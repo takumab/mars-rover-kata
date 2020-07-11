@@ -26,20 +26,23 @@ describe('Mars Rover', () => {
       const marsRover = new MarsRover(xCoordinate, yCoordinate, direction);
 
       const position = marsRover.execute(command);
+
       expect(position).toBe(expected);
     }
   );
 
   it.each`
-    xCoordinate | yCoordinate | direction | command | expected
-    ${0}        | ${0}        | ${'E'}    | ${'M'}  | ${'1:0:E'}
-    ${0}        | ${0}        | ${'E'}    | ${'MM'} | ${'2:0:E'}
+    xCoordinate | yCoordinate | direction | command  | expected
+    ${0}        | ${0}        | ${'E'}    | ${'M'}   | ${'1:0:E'}
+    ${0}        | ${0}        | ${'E'}    | ${'MM'}  | ${'2:0:E'}
+    ${1}        | ${2}        | ${'E'}    | ${'MMM'} | ${'4:2:E'}
   `(
     'should return $expected when facing $direction and command is $command',
     ({ xCoordinate, yCoordinate, direction, command, expected }) => {
       const marsRover = new MarsRover(xCoordinate, yCoordinate, direction);
 
       const position = marsRover.execute(command);
+
       expect(position).toBe(expected);
     }
   );
