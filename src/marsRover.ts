@@ -23,9 +23,6 @@ export class MarsRover {
     }
 
     if (this.direction === 'E') {
-      if (commands === '') {
-        return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
-      }
       if (commands === 'M') {
         this.xCoordinate += commands.length;
         return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
