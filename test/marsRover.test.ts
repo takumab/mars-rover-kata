@@ -46,10 +46,28 @@ describe('Mars Rover', () => {
       expect(position).toBe(expected);
     }
   );
+
   it.each`
-    xCoordinate | yCoordinate | direction | command | expected
-    ${0}        | ${1}        | ${'S'}    | ${'M'}  | ${'0:2:S'}
-    ${1}        | ${1}        | ${'S'}    | ${'MM'} | ${'1:3:S'}
+    xCoordinate | yCoordinate | direction | command  | expected
+    ${0}        | ${1}        | ${'S'}    | ${'M'}   | ${'0:2:S'}
+    ${1}        | ${1}        | ${'S'}    | ${'MM'}  | ${'1:3:S'}
+    ${1}        | ${1}        | ${'S'}    | ${'MMM'} | ${'1:4:S'}
+  `(
+    'should return $expected when facing $direction and command is $command',
+    ({ xCoordinate, yCoordinate, direction, command, expected }) => {
+      const marsRover = new MarsRover(xCoordinate, yCoordinate, direction);
+
+      const position = marsRover.execute(command);
+
+      expect(position).toBe(expected);
+    }
+  );
+
+  it.each`
+    xCoordinate | yCoordinate | direction | command  | expected
+    ${1}        | ${2}        | ${'W'}    | ${'M'}   | ${'2:2:W'}
+    ${2}        | ${2}        | ${'W'}    | ${'MM'}  | ${'4:2:W'}
+    ${3}        | ${2}        | ${'W'}    | ${'MMM'} | ${'6:2:W'}
   `(
     'should return $expected when facing $direction and command is $command',
     ({ xCoordinate, yCoordinate, direction, command, expected }) => {
