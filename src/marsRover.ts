@@ -18,8 +18,13 @@ export class MarsRover {
       this.getPositionX(commands);
     }
 
+    if (this.direction === 'S') {
+      this.getPositionY(commands);
+    }
+
     return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
   }
+
   private getPositionY(commands: string): string {
     this.yCoordinate += commands.length;
     return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
