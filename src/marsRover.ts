@@ -1,3 +1,10 @@
+enum Direction {
+  N = 'N',
+  E = 'E',
+  S = 'S',
+  W = 'W'
+}
+
 export class MarsRover {
   private xCoordinate: number;
   private yCoordinate: number;
@@ -10,19 +17,19 @@ export class MarsRover {
   }
 
   execute(commands: string): string {
-    if (this.direction === 'N') {
+    if (this.direction === Direction.N) {
       this.getPositionY(commands);
     }
 
-    if (this.direction === 'E') {
+    if (this.direction === Direction.E) {
       this.getPositionX(commands);
     }
 
-    if (this.direction === 'S') {
+    if (this.direction === Direction.S) {
       this.getPositionY(commands);
     }
 
-    if (this.direction === 'W') {
+    if (this.direction === Direction.W) {
       this.getPositionX(commands);
     }
 
