@@ -21,7 +21,7 @@ describe('Mars Rover', () => {
     ${0}        | ${0}        | ${'N'}    | ${'MM'}  | ${'0:2:N'}
     ${0}        | ${0}        | ${'N'}    | ${'MMM'} | ${'0:3:N'}
   `(
-    'should return $expected when facing $direction and command is $command',
+    'should be at position $expected after $command command when facing $direction',
     ({ xCoordinate, yCoordinate, direction, command, expected }) => {
       const marsRover = new MarsRover(xCoordinate, yCoordinate, direction);
 
