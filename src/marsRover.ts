@@ -25,14 +25,6 @@ export class MarsRover {
       this.getPositionX(commands);
     }
 
-    if (this.direction === Direction.S) {
-      this.getPositionY(commands);
-    }
-
-    if (this.direction === Direction.W) {
-      this.getPositionX(commands);
-    }
-
     return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
   }
 
