@@ -23,6 +23,9 @@ describe('Mars Rover', () => {
     ${0}        | ${0}        | ${'E'}    | ${'M'}   | ${'1:0:E'}
     ${0}        | ${0}        | ${'E'}    | ${'MM'}  | ${'2:0:E'}
     ${1}        | ${2}        | ${'E'}    | ${'MMM'} | ${'4:2:E'}
+    ${1}        | ${2}        | ${'N'}    | ${'L'}   | ${'1:2:W'}
+    ${1}        | ${2}        | ${'N'}    | ${'LL'}  | ${'1:2:S'}
+    ${1}        | ${2}        | ${'N'}    | ${'LLL'} | ${'1:2:E'}
   `(
     'should be at position $expected after $command command when facing $direction',
     ({ xCoordinate, yCoordinate, direction, command, expected }) => {

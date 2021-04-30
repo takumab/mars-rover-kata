@@ -17,6 +17,19 @@ export class MarsRover {
   }
 
   execute(commands: string): string {
+    if (commands === 'L' && this.direction === Direction.N) {
+      this.direction = Direction.W;
+    }
+
+    if (commands === 'LL' && this.direction === Direction.N) {
+      this.direction = Direction.S;
+    }
+
+    if (commands === 'LLL' && this.direction === Direction.N) {
+      this.direction = Direction.E;
+      return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+    }
+
     if (this.direction === Direction.N) {
       this.getPositionY(commands);
     }
