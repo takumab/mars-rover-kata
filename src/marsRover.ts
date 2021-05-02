@@ -17,18 +17,21 @@ export class MarsRover {
   }
 
   execute(commands: string): string {
-    if (this.direction === Direction.N) {
-      if (commands === 'L') {
-        this.direction = Direction.W;
-      }
-
-      if (commands === 'LL') {
-        this.direction = Direction.S;
-      }
-
-      if (commands === 'LLL') {
-        this.direction = Direction.E;
-        return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+    for (const command of commands) {
+      if (command === 'L') {
+        switch (this.direction) {
+          case Direction.N:
+            this.direction = Direction.W;
+            break;
+          case Direction.W:
+            this.direction = Direction.S;
+            break;
+          case Direction.S:
+            this.direction = Direction.E;
+            break;
+          default:
+            return 'undefined';
+        }
       }
     }
 
@@ -36,7 +39,7 @@ export class MarsRover {
       this.getPositionY(commands);
     }
 
-    if (this.direction === Direction.E) {
+    if (this.direction === Direction.E && commands.includes('M')) {
       this.getPositionX(commands);
     }
 
