@@ -47,6 +47,9 @@ export class MarsRover {
             console.log('[Temporary arbitrary text] Going the wrong way');
         }
       }
+      if (command === 'R') {
+        this.direction = Direction.NORTH;
+      }
     }
   }
 
