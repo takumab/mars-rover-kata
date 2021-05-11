@@ -2,17 +2,19 @@ import { Direction } from './direction';
 import { Rover } from './marsRoverStatePattern';
 
 export class FacingNorthState implements Direction {
-  public rotateLeft(rover: Rover): string {
+  rotateLeft(rover: Rover): Direction {
     console.log('From North to West');
-    rover.setState(rover.facingWestState);
-    rover.setDirection('W');
+    rover.setDirection(rover.facingWestState);
     return rover.getDirection;
   }
 
-  public rotateRight(rover: Rover): string {
+  rotateRight(rover: Rover): Direction {
     console.log('From North to East');
-    rover.setState(rover.facingEastState);
-    rover.setDirection('E');
+    rover.setDirection(rover.facingEastState);
     return rover.getDirection;
+  }
+
+  toDirectionString(): string {
+    return 'N';
   }
 }

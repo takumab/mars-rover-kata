@@ -4,4 +4,6 @@ export interface Direction {
   rotateLeft(rover: Rover): Direction;
 
   rotateRight(rover: Rover): Direction;
+
+  toDirectionString(): string;
 }

@@ -45,7 +45,7 @@ export class Rover {
 
   setDirection(direction: Direction): void {
     console.log(`Current direction: ${(<any>direction).constructor.name}`);
-    this.direction = direction.rotateRight(this);
+    this.direction = direction;
   }
 
   private rotateLeft(): void {
@@ -58,7 +58,9 @@ export class Rover {
   executing(commands: string): string {
     this.handlingRotation(commands);
 
-    return `${this.xCoordinate}:${this.yCoordinate}:${this.direction}`;
+    return `${this.xCoordinate}:${
+      this.yCoordinate
+    }:${this.direction.toDirectionString()}`;
   }
 
   private handlingRotation(commands: string): void {
@@ -75,7 +77,9 @@ export class Rover {
 
 function main() {
   const marsRover = new Rover(1, 2, new FacingNorthState());
-  console.log(marsRover.executing('L'));
+  const marsRover2 = new Rover(1, 2, new FacingSouthState());
+  console.log('Mars Rover One', marsRover.executing('LLR'));
+  console.log('Mars Rover Two', marsRover2.executing('L'));
 }
 
 main();
