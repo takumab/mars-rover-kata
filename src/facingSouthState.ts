@@ -1,16 +1,20 @@
-import { State } from './state';
+import { Direction } from './direction';
 import { Rover } from './marsRoverStatePattern';
+import { FacingEastState } from './facingEastState';
 
-export class FacingSouthState implements State {
-  rotateLeft(rover: Rover): void {
+export class FacingSouthState implements Direction {
+  private rover: Rover;
+  constructor(rover: Rover) {
+    this.rover = rover;
+  }
+  rotateLeft(rover: Rover): Direction {
     console.log('From South to East');
-    rover.setState(rover.facingEastState);
-    rover.setDirection('E');
+    return new FacingEastState();
   }
 
-  rotateRight(rover: Rover): void {
+  rotateRight(rover: Rover): Direction {
     console.log('From South to West');
-    rover.setState(rover.facingWestState);
-    rover.setDirection('W');
+    rover.setDirection(this.rover.facingWestState);
+    return this.rover.getDirection;
   }
 }

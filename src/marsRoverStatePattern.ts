@@ -1,24 +1,23 @@
-import { State } from './state';
+import { Direction } from './direction';
 import { FacingNorthState } from './facingNorthState';
 import { FacingWestState } from './facingWestState';
 import { FacingEastState } from './facingEastState';
 import { FacingSouthState } from './facingSouthState';
 
+// Context
 export class Rover {
   private xCoordinate: number;
   private yCoordinate: number;
-  private direction: string;
+  private direction: Direction; // Reference to state
   private _facingNorthState: FacingNorthState;
   private _facingWestState: FacingWestState;
   private _facingEastState: FacingEastState;
   private _facingSouthState: FacingSouthState;
-  private state: State;
 
-  constructor(xCoordinate: number, yCoordinate: number, direction: string) {
+  constructor(xCoordinate: number, yCoordinate: number, direction: Direction) {
     this.xCoordinate = xCoordinate;
     this.yCoordinate = yCoordinate;
     this.direction = direction;
-    this.state = new FacingNorthState();
     this._facingNorthState = new FacingNorthState();
     this._facingWestState = new FacingWestState();
     this._facingSouthState = new FacingSouthState();
@@ -40,21 +39,20 @@ export class Rover {
   get facingEastState(): FacingEastState {
     return this._facingEastState;
   }
-
-  setState(state: State): void {
-    console.log(`Current state: ${(<any>state).constructor.name}`);
-    this.state = state;
+  get getDirection(): Direction {
+    return this.direction;
   }
 
-  setDirection(direction: string): void {
-    this.direction = direction;
+  setDirection(direction: Direction): void {
+    console.log(`Current direction: ${(<any>direction).constructor.name}`);
+    this.direction = direction.rotateRight(this);
   }
 
   private rotateLeft(): void {
-    this.state.rotateLeft(this, this.direction);
+    this.direction.rotateLeft(this);
   }
   private rotateRight(): void {
-    this.state.rotateRight(this, this.direction);
+    this.direction.rotateRight(this);
   }
 
   executing(commands: string): string {
@@ -74,8 +72,9 @@ export class Rover {
     }
   }
 }
+
 function main() {
-  const marsRover = new Rover(1, 2, 'S');
+  const marsRover = new Rover(1, 2, new FacingNorthState());
   console.log(marsRover.executing('L'));
 }
 
