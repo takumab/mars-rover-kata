@@ -1,4 +1,4 @@
-import { MarsRover } from '../src/marsRover';
+import { East, MarsRover, North, West } from '../src/marsRover';
 
 /*
  * Task: develop API that moves rovers around on plateau
@@ -16,17 +16,17 @@ import { MarsRover } from '../src/marsRover';
 
 describe('Mars Rover', () => {
   it.each`
-    xCoordinate | yCoordinate | direction | command  | expected
-    ${0}        | ${0}        | ${'N'}    | ${'M'}   | ${'0:1:N'}
-    ${0}        | ${0}        | ${'N'}    | ${'MM'}  | ${'0:2:N'}
-    ${0}        | ${0}        | ${'N'}    | ${'MMM'} | ${'0:3:N'}
-    ${0}        | ${0}        | ${'E'}    | ${'M'}   | ${'1:0:E'}
-    ${0}        | ${0}        | ${'E'}    | ${'MM'}  | ${'2:0:E'}
-    ${1}        | ${2}        | ${'E'}    | ${'MMM'} | ${'4:2:E'}
-    ${1}        | ${2}        | ${'N'}    | ${'L'}   | ${'1:2:W'}
-    ${1}        | ${2}        | ${'N'}    | ${'LL'}  | ${'1:2:S'}
-    ${1}        | ${2}        | ${'N'}    | ${'LLL'} | ${'1:2:E'}
-    ${3}        | ${4}        | ${'W'}    | ${'R'}   | ${'3:4:N'}
+    xCoordinate | yCoordinate | direction      | command  | expected
+    ${0}        | ${0}        | ${new North()} | ${'M'}   | ${'0:1:N'}
+    ${0}        | ${0}        | ${new North()} | ${'MM'}  | ${'0:2:N'}
+    ${0}        | ${0}        | ${new North()} | ${'MMM'} | ${'0:3:N'}
+    ${0}        | ${0}        | ${new East()}  | ${'M'}   | ${'1:0:E'}
+    ${0}        | ${0}        | ${new East()}  | ${'MM'}  | ${'2:0:E'}
+    ${1}        | ${2}        | ${new East()}  | ${'MMM'} | ${'4:2:E'}
+    ${1}        | ${2}        | ${new North()} | ${'L'}   | ${'1:2:W'}
+    ${1}        | ${2}        | ${new North()} | ${'LL'}  | ${'1:2:S'}
+    ${1}        | ${2}        | ${new North()} | ${'LLL'} | ${'1:2:E'}
+    ${3}        | ${4}        | ${new West()}  | ${'R'}   | ${'3:4:N'}
   `(
     'should be at position $expected after $command command when facing $direction',
     ({ xCoordinate, yCoordinate, direction, command, expected }) => {
