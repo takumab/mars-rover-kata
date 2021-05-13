@@ -1,78 +1,14 @@
-enum Direction {
+import { IDirection } from './IDirection';
+import { North } from './north';
+import { West } from './west';
+import { East } from './east';
+import { South } from './south';
+
+export enum Direction {
   NORTH = 'N',
   EAST = 'E',
   SOUTH = 'S',
   WEST = 'W'
-}
-
-interface IDirection {
-  rotateLeft(marsRover: MarsRover): IDirection;
-  rotateRight(marsRover: MarsRover): IDirection;
-  toDirectionString(): string;
-}
-
-export class North implements IDirection {
-  rotateLeft(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.west);
-    return marsRover.direction;
-  }
-
-  rotateRight(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.east);
-    return marsRover.direction;
-  }
-
-  toDirectionString(): string {
-    return Direction.NORTH;
-  }
-}
-
-export class West implements IDirection {
-  rotateLeft(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.south);
-    return marsRover.direction;
-  }
-
-  rotateRight(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.north);
-    return marsRover.direction;
-  }
-
-  toDirectionString(): string {
-    return Direction.WEST;
-  }
-}
-
-export class East implements IDirection {
-  rotateLeft(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.north);
-    return marsRover.direction;
-  }
-
-  rotateRight(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.south);
-    return marsRover.direction;
-  }
-
-  toDirectionString(): string {
-    return Direction.EAST;
-  }
-}
-
-export class South implements IDirection {
-  rotateLeft(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.east);
-    return marsRover.direction;
-  }
-
-  rotateRight(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.west);
-    return marsRover.direction;
-  }
-
-  toDirectionString(): string {
-    return Direction.SOUTH;
-  }
 }
 
 export class MarsRover {
