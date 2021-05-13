@@ -20,6 +20,7 @@ export class MarsRover {
   private _east: East;
   private _south: South;
 
+  // TODO: Refactor x and y coordinate into own class Position
   constructor(xCoordinate: number, yCoordinate: number, direction: IDirection) {
     this.xCoordinate = xCoordinate;
     this.yCoordinate = yCoordinate;
@@ -43,10 +44,11 @@ export class MarsRover {
   get north(): North {
     return this._north;
   }
-
+  // TODO: Refactor into the command pattern
   execute(commands: string): string {
     this.handleRotation(commands);
 
+    // TODO: Refactor, add move function to IDirection
     if (
       this._direction.toDirectionString() === Direction.NORTH &&
       commands.includes('M')
