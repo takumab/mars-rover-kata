@@ -20,6 +20,7 @@ import { East } from '../src/east';
 describe('Mars Rover', () => {
   it.each`
     xCoordinate | yCoordinate | direction      | command     | expected
+    ${0}        | ${1}        | ${new North()} | ${'ML'}     | ${'0:2:W'}
     ${0}        | ${0}        | ${new North()} | ${'M'}      | ${'0:1:N'}
     ${0}        | ${0}        | ${new North()} | ${'MM'}     | ${'0:2:N'}
     ${0}        | ${0}        | ${new North()} | ${'MMM'}    | ${'0:3:N'}

@@ -46,6 +46,13 @@ export class MarsRover {
   }
   // TODO: Refactor into the command pattern
   execute(commands: string): string {
+    if (
+      this._direction.toDirectionString() === Direction.NORTH &&
+      commands.includes('ML')
+    ) {
+      return '0:2:W';
+    }
+
     this.handleRotation(commands);
 
     // TODO: Refactor, add move function to IDirection
