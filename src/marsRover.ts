@@ -34,6 +34,7 @@ export class MarsRover {
   get east(): East {
     return this._east;
   }
+
   get south(): South {
     return this._south;
   }
@@ -41,9 +42,19 @@ export class MarsRover {
   get west(): West {
     return this._west;
   }
+
   get north(): North {
     return this._north;
   }
+
+  get direction(): IDirection {
+    return this._direction;
+  }
+
+  setDirection(direction: IDirection): void {
+    this._direction = direction;
+  }
+
   // TODO: Refactor into the command pattern
   execute(commands: string): string {
     for (const command of commands) {
@@ -69,14 +80,6 @@ export class MarsRover {
     return `${this.xCoordinate}:${
       this.yCoordinate
     }:${this._direction.toDirectionString()}`;
-  }
-
-  setDirection(direction: IDirection): void {
-    this._direction = direction;
-  }
-
-  get direction(): IDirection {
-    return this._direction;
   }
 
   private handleRotation(commands: string): void {
