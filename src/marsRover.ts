@@ -46,22 +46,18 @@ export class MarsRover {
   }
   // TODO: Refactor into the command pattern
   execute(commands: string): string {
-    if (
-      this._direction.toDirectionString() === Direction.NORTH &&
-      commands.includes('ML')
-    ) {
-      return '0:2:W';
+    for (const command of commands) {
+      if (
+        this._direction.toDirectionString() === Direction.NORTH &&
+        command === 'M'
+      ) {
+        this.yCoordinate += command.length;
+      }
     }
 
     this.handleRotation(commands);
 
-    // TODO: Refactor, add move function to IDirection
-    if (
-      this._direction.toDirectionString() === Direction.NORTH &&
-      commands.includes('M')
-    ) {
-      this.getPositionY(commands);
-    }
+    // TODO: Refactor; Add move function to IDirection
 
     if (
       this._direction.toDirectionString() === Direction.EAST &&
@@ -94,20 +90,18 @@ export class MarsRover {
     }
   }
 
-  private getPositionY(commands: string): string {
-    this.yCoordinate += commands.length;
-    return `${this.xCoordinate}:${this.yCoordinate}:${this._direction}`;
-  }
-
   private getPositionX(commands: string): string {
     this.xCoordinate += commands.length;
     return `${this.xCoordinate}:${this.yCoordinate}:${this._direction}`;
   }
-
+  // TODO seems redundant and unnecessary
+  //  think moving this._direction up to handleRotation()
   private rotateLeft() {
     this._direction.rotateLeft(this);
   }
 
+  // TODO seems redundant and unnecessary
+  //  think moving this._direction up to handleRotation()
   private rotateRight() {
     this._direction.rotateRight(this);
   }
