@@ -2,6 +2,7 @@ import { MarsRover } from '../src/marsRover';
 import { North } from '../src/north';
 import { West } from '../src/west';
 import { East } from '../src/east';
+import { South } from '../src/south';
 
 /*
  * Task: develop API that moves rovers around on plateau
@@ -35,6 +36,7 @@ describe('Mars Rover', () => {
     ${3}        | ${4}        | ${new West()}  | ${'RR'}     | ${'3:4:E'}
     ${3}        | ${4}        | ${new West()}  | ${'RRR'}    | ${'3:4:S'}
     ${3}        | ${4}        | ${new East()}  | ${'LLRRRL'} | ${'3:4:E'}
+    ${1}        | ${3}        | ${new South()} | ${'MR'}     | ${'1:4:W'}
   `(
     'should be at position $expected after $command command when facing $direction',
     ({ xCoordinate, yCoordinate, direction, command, expected }) => {

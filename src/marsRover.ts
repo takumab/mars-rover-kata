@@ -57,14 +57,7 @@ export class MarsRover {
 
   // TODO: Refactor into the command pattern
   execute(commands: string): string {
-    for (const command of commands) {
-      if (
-        this._direction.toDirectionString() === Direction.NORTH &&
-        command === 'M'
-      ) {
-        this.yCoordinate += command.length;
-      }
-    }
+    this.handleMovement(commands);
 
     this.handleRotation(commands);
 
@@ -80,6 +73,19 @@ export class MarsRover {
     return `${this.xCoordinate}:${
       this.yCoordinate
     }:${this._direction.toDirectionString()}`;
+  }
+
+  private handleMovement(commands: string): void {
+    for (const command of commands) {
+      if (
+        (this._direction.toDirectionString() === Direction.NORTH &&
+          command === 'M') ||
+        (this._direction.toDirectionString() === Direction.SOUTH &&
+          command === 'M')
+      ) {
+        this.yCoordinate += command.length;
+      }
+    }
   }
 
   private handleRotation(commands: string): void {
