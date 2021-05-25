@@ -91,10 +91,10 @@ export class MarsRover {
   private handleRotation(commands: string): void {
     for (const command of commands) {
       if (command === 'L') {
-        this.rotateLeft();
+        this._direction.rotateLeft(this);
       }
       if (command === 'R') {
-        this.rotateRight();
+        this._direction.rotateRight(this);
       }
     }
   }
@@ -102,16 +102,5 @@ export class MarsRover {
   private getPositionX(commands: string): string {
     this.xCoordinate += commands.length;
     return `${this.xCoordinate}:${this.yCoordinate}:${this._direction}`;
-  }
-  // TODO seems redundant and unnecessary
-  //  think moving this._direction up to handleRotation()
-  private rotateLeft() {
-    this._direction.rotateLeft(this);
-  }
-
-  // TODO seems redundant and unnecessary
-  //  think moving this._direction up to handleRotation()
-  private rotateRight() {
-    this._direction.rotateRight(this);
   }
 }
