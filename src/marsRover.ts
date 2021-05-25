@@ -3,6 +3,7 @@ import { North } from './north';
 import { West } from './west';
 import { East } from './east';
 import { South } from './south';
+import { Position } from './position';
 
 export enum Direction {
   NORTH = 'N',
@@ -10,20 +11,17 @@ export enum Direction {
   SOUTH = 'S',
   WEST = 'W'
 }
-
 export class MarsRover {
-  private xCoordinate: number;
-  private yCoordinate: number;
   private _direction: IDirection;
   private _north: North;
   private _west: West;
   private _east: East;
   private _south: South;
+  private position: Position;
 
   // TODO: Refactor x and y coordinate into own class Position
-  constructor(xCoordinate: number, yCoordinate: number, direction: IDirection) {
-    this.xCoordinate = xCoordinate;
-    this.yCoordinate = yCoordinate;
+  constructor(position: Position, direction: IDirection) {
+    this.position = position;
     this._direction = direction;
     this._north = new North();
     this._west = new West();
@@ -70,8 +68,8 @@ export class MarsRover {
       this.getPositionX(commands);
     }
 
-    return `${this.xCoordinate}:${
-      this.yCoordinate
+    return `${this.position.x}:${
+      this.position.y
     }:${this._direction.toDirectionString()}`;
   }
 
@@ -83,7 +81,7 @@ export class MarsRover {
         (this._direction.toDirectionString() === Direction.SOUTH &&
           command === 'M')
       ) {
-        this.yCoordinate += command.length;
+        this.position.y += command.length;
       }
     }
   }
@@ -100,7 +98,7 @@ export class MarsRover {
   }
 
   private getPositionX(commands: string): string {
-    this.xCoordinate += commands.length;
-    return `${this.xCoordinate}:${this.yCoordinate}:${this._direction}`;
+    this.position.x += commands.length;
+    return `${this.position.x}:${this.position.y}:${this._direction}`;
   }
 }
