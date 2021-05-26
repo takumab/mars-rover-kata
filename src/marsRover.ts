@@ -11,6 +11,7 @@ export enum Direction {
   SOUTH = 'S',
   WEST = 'W'
 }
+
 export class MarsRover {
   private _direction: IDirection;
   private _north: North;
@@ -86,11 +87,11 @@ export class MarsRover {
     }
   }
 
-  private isDirectionFor(direction: Direction) {
+  private isDirectionFor(direction: Direction): boolean {
     return this._direction.toDirectionString() === direction;
   }
 
-  private isMovementCommand(command: string) {
+  private isMovementCommand(command: string): boolean {
     return command === 'M';
   }
 
