@@ -61,13 +61,6 @@ export class MarsRover {
 
     // TODO: Refactor; Add move function to IDirection
 
-    if (
-      this._direction.toDirectionString() === Direction.EAST &&
-      commands.includes('M')
-    ) {
-      this.getPositionX(commands);
-    }
-
     return `${this.position.x}:${
       this.position.y
     }:${this._direction.toDirectionString()}`;
@@ -83,6 +76,14 @@ export class MarsRover {
       ) {
         this.position.y += command.length;
       }
+      if (
+        (this._direction.toDirectionString() === Direction.WEST &&
+          command === 'M') ||
+        (this._direction.toDirectionString() === Direction.EAST &&
+          command === 'M')
+      ) {
+        this.position.x += command.length;
+      }
     }
   }
 
@@ -95,10 +96,5 @@ export class MarsRover {
         this._direction.rotateRight(this);
       }
     }
-  }
-
-  private getPositionX(commands: string): string {
-    this.position.x += commands.length;
-    return `${this.position.x}:${this.position.y}:${this._direction}`;
   }
 }
