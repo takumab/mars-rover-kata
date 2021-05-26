@@ -69,22 +69,29 @@ export class MarsRover {
   private handleMovement(commands: string): void {
     for (const command of commands) {
       if (
-        (this._direction.toDirectionString() === Direction.NORTH &&
-          command === 'M') ||
-        (this._direction.toDirectionString() === Direction.SOUTH &&
-          command === 'M')
+        (this.isDirectionFor(Direction.NORTH) &&
+          this.isMovementCommand(command)) ||
+        (this.isDirectionFor(Direction.SOUTH) &&
+          this.isMovementCommand(command))
       ) {
         this.position.y += command.length;
       }
       if (
-        (this._direction.toDirectionString() === Direction.WEST &&
-          command === 'M') ||
-        (this._direction.toDirectionString() === Direction.EAST &&
-          command === 'M')
+        (this.isDirectionFor(Direction.WEST) &&
+          this.isMovementCommand(command)) ||
+        (this.isDirectionFor(Direction.EAST) && this.isMovementCommand(command))
       ) {
         this.position.x += command.length;
       }
     }
+  }
+
+  private isDirectionFor(direction: Direction) {
+    return this._direction.toDirectionString() === direction;
+  }
+
+  private isMovementCommand(command: string) {
+    return command === 'M';
   }
 
   private handleRotation(commands: string): void {
