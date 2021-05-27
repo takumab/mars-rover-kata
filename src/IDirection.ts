@@ -5,5 +5,7 @@ export interface IDirection {
 
   rotateRight(marsRover: MarsRover): IDirection;
 
+  // move(marsRover: MarsRover): IDirection;
+
   toDirectionString(): string;
 }

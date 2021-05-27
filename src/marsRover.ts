@@ -57,7 +57,6 @@ export class MarsRover {
   // TODO: Refactor into the command pattern
   execute(commands: string): string {
     this.handleMovement(commands);
-
     this.handleRotation(commands);
 
     // TODO: Refactor; Add move function to IDirection
@@ -87,14 +86,6 @@ export class MarsRover {
     }
   }
 
-  private isDirectionFor(direction: Direction): boolean {
-    return this._direction.toDirectionString() === direction;
-  }
-
-  private isMovementCommand(command: string): boolean {
-    return command === 'M';
-  }
-
   private handleRotation(commands: string): void {
     for (const command of commands) {
       if (command === 'L') {
@@ -104,5 +95,13 @@ export class MarsRover {
         this._direction.rotateRight(this);
       }
     }
+  }
+
+  private isDirectionFor(direction: Direction): boolean {
+    return this._direction.toDirectionString() === direction;
+  }
+
+  private isMovementCommand(command: string): boolean {
+    return command === 'M';
   }
 }
