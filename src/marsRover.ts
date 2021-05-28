@@ -66,26 +66,6 @@ export class MarsRover {
     }:${this._direction.toDirectionString()}`;
   }
 
-  private handleMovement(commands: string): void {
-    for (const command of commands) {
-      if (
-        (this.isDirectionFor(Direction.NORTH) &&
-          this.isMovementCommand(command)) ||
-        (this.isDirectionFor(Direction.SOUTH) &&
-          this.isMovementCommand(command))
-      ) {
-        this.position.y += command.length;
-      }
-      if (
-        (this.isDirectionFor(Direction.WEST) &&
-          this.isMovementCommand(command)) ||
-        (this.isDirectionFor(Direction.EAST) && this.isMovementCommand(command))
-      ) {
-        this.position.x += command.length;
-      }
-    }
-  }
-
   private handleRotation(commands: string): void {
     for (const command of commands) {
       if (command === 'L') {
@@ -95,6 +75,33 @@ export class MarsRover {
         this._direction.rotateRight(this);
       }
     }
+  }
+
+  private handleMovement(commands: string): void {
+    for (const command of commands) {
+      if (this.isNorthOrSouth(command)) {
+        this.position.y += command.length;
+      }
+      if (this.isEastOrWest(command)) {
+        this.position.x += command.length;
+      }
+    }
+  }
+
+  private isEastOrWest(command: string) {
+    return (
+      (this.isDirectionFor(Direction.WEST) &&
+        this.isMovementCommand(command)) ||
+      (this.isDirectionFor(Direction.EAST) && this.isMovementCommand(command))
+    );
+  }
+
+  private isNorthOrSouth(command: string) {
+    return (
+      (this.isDirectionFor(Direction.NORTH) &&
+        this.isMovementCommand(command)) ||
+      (this.isDirectionFor(Direction.SOUTH) && this.isMovementCommand(command))
+    );
   }
 
   private isDirectionFor(direction: Direction): boolean {
