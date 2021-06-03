@@ -88,7 +88,7 @@ export class MarsRover {
     }
   }
 
-  private isEastOrWest(command: string) {
+  private isEastOrWest(command: string): boolean {
     return (
       (this.isDirectionFor(Direction.WEST) &&
         this.isMovementCommand(command)) ||
@@ -96,7 +96,7 @@ export class MarsRover {
     );
   }
 
-  private isNorthOrSouth(command: string) {
+  private isNorthOrSouth(command: string): boolean {
     return (
       (this.isDirectionFor(Direction.NORTH) &&
         this.isMovementCommand(command)) ||
