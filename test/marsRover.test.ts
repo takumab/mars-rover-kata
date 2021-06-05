@@ -21,23 +21,24 @@ import { Position } from '../src/position';
 
 describe('Mars Rover', () => {
   it.each`
-    position               | direction      | command     | expected
-    ${new Position(0, 0)}  | ${new North()} | ${'M'}      | ${'0:1:N'}
-    ${new Position(0, 0)}  | ${new North()} | ${'MM'}     | ${'0:2:N'}
-    ${new Position(0, 0)}  | ${new North()} | ${'MMM'}    | ${'0:3:N'}
-    ${new Position(0, 0)}  | ${new East()}  | ${'M'}      | ${'1:0:E'}
-    ${new Position(0, 0)}  | ${new East()}  | ${'MM'}     | ${'2:0:E'}
-    ${new Position(1, 2)}  | ${new East()}  | ${'MMM'}    | ${'4:2:E'}
-    ${new Position(0, 1)}  | ${new North()} | ${'ML'}     | ${'0:2:W'}
-    ${new Position(0, 1)}  | ${new North()} | ${'MML'}    | ${'0:3:W'}
-    ${new Position(1, 2)}  | ${new North()} | ${'L'}      | ${'1:2:W'}
-    ${new Position(1, 2)}  | ${new North()} | ${'LL'}     | ${'1:2:S'}
-    ${new Position(1, 2)}  | ${new North()} | ${'LLL'}    | ${'1:2:E'}
-    ${new Position(3, 4)}  | ${new West()}  | ${'R'}      | ${'3:4:N'}
-    ${new Position(3, 4)}  | ${new West()}  | ${'RR'}     | ${'3:4:E'}
-    ${new Position(3, 4)}  | ${new West()}  | ${'RRR'}    | ${'3:4:S'}
-    ${new Position(3, 4)}  | ${new East()}  | ${'LLRRRL'} | ${'3:4:E'}
-    ${new Position(1, -3)} | ${new South()} | ${'MR'}     | ${'1:-2:W'}
+    position               | direction      | command      | expected
+    ${new Position(0, 0)}  | ${new North()} | ${'M'}       | ${'0:1:N'}
+    ${new Position(0, 0)}  | ${new North()} | ${'MM'}      | ${'0:2:N'}
+    ${new Position(0, 0)}  | ${new North()} | ${'MMM'}     | ${'0:3:N'}
+    ${new Position(0, 0)}  | ${new East()}  | ${'M'}       | ${'1:0:E'}
+    ${new Position(0, 0)}  | ${new East()}  | ${'MM'}      | ${'2:0:E'}
+    ${new Position(1, 2)}  | ${new East()}  | ${'MMM'}     | ${'4:2:E'}
+    ${new Position(0, 1)}  | ${new North()} | ${'ML'}      | ${'0:2:W'}
+    ${new Position(0, 1)}  | ${new North()} | ${'MML'}     | ${'0:3:W'}
+    ${new Position(1, 2)}  | ${new North()} | ${'L'}       | ${'1:2:W'}
+    ${new Position(1, 2)}  | ${new North()} | ${'LL'}      | ${'1:2:S'}
+    ${new Position(1, 2)}  | ${new North()} | ${'LLL'}     | ${'1:2:E'}
+    ${new Position(3, 4)}  | ${new West()}  | ${'R'}       | ${'3:4:N'}
+    ${new Position(3, 4)}  | ${new West()}  | ${'RR'}      | ${'3:4:E'}
+    ${new Position(3, 4)}  | ${new West()}  | ${'RRR'}     | ${'3:4:S'}
+    ${new Position(3, 4)}  | ${new East()}  | ${'LLRRRL'}  | ${'3:4:E'}
+    ${new Position(1, -3)} | ${new South()} | ${'MR'}      | ${'1:-4:W'}
+    ${new Position(1, -3)} | ${new South()} | ${'MRLLLRM'} | ${'2:-4:E'}
   `(
     'should be at $position $expected after $command command when facing $direction',
     ({ position, direction, command, expected }) => {

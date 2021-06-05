@@ -1,15 +1,15 @@
 import { IDirection } from './IDirection';
-import { Direction, MarsRover } from './marsRover';
+import { Direction } from './marsRover';
+import { North } from './north';
+import { South } from './south';
 
 export class East implements IDirection {
-  rotateLeft(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.north);
-    return marsRover.direction;
+  rotateLeft(): IDirection {
+    return new North();
   }
 
-  rotateRight(marsRover: MarsRover): IDirection {
-    marsRover.setDirection(marsRover.south);
-    return marsRover.direction;
+  rotateRight(): IDirection {
+    return new South();
   }
 
   toDirectionString(): string {
