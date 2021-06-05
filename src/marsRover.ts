@@ -54,7 +54,6 @@ export class MarsRover {
     this._direction = this._direction.rotateLeft();
   }
 
-  // TODO: Refactor: Bring rotation and movement together
   private handleMovement(command: string): void {
     switch (this._direction.toDirectionString()) {
       case Direction.NORTH:
